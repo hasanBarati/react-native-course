@@ -1,18 +1,100 @@
-import { Image, StyleSheet, Platform, View, Text } from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Platform,
+  View,
+  Text,
+  ImageBackground,
+  ScrollView,
+  Button,
+  Pressable,
+  Modal,
+  StatusBar,
+  ActivityIndicator,
+  Alert,
+} from "react-native";
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { HelloWave } from "@/components/HelloWave";
+import ParallaxScrollView from "@/components/ParallaxScrollView";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
+import { useState } from "react";
 
-const logImage=require('@/assets/images/adaptive-icon.png')
+const logImage = require("@/assets/images/adaptive-icon.png");
 export default function HomeScreen() {
+  const [isModalVisible, setIsModalVisible] = useState(false);
   return (
-
-      <View style={{flex:1,backgroundColor:"plum",padding:60}}>
-         <Text>Test React Native Text </Text>
-         <Image source={logImage}/>
+    <ScrollView>
+    
+      <View style={{ flex: 1, backgroundColor: "plum", padding: 60 }}>
+      <View style={[styles.content,styles.boxShadow]}>
+        <Text>ff</Text>
       </View>
+        <StatusBar backgroundColor={"green"} />
+
+        <ActivityIndicator />
+        <Button
+          title="open alert"
+          onPress={() =>
+            Alert.alert("invalid Data", "DB incorrect", [
+              { text: "Cancel", onPress: () => console.log("cancel") },
+              { text: "OK", onPress: () => console.log("OK") },
+            ])
+          }
+        />
+        <Button title="Press" onPress={() => setIsModalVisible(true)} />
+        <Modal
+          visible={isModalVisible}
+          animationType="slide"
+          presentationStyle="pageSheet"
+        >
+          <Pressable onPress={() => setIsModalVisible(false)}>
+            <Text>
+              Contrary to popular belief, Lorem Ipsum is not simply random text.
+              It has roots in a piece of classical Latin literature from 45 BC,
+              making it over 2000 years old. Richard McClintock, a Latin
+              professor at Hampden-Sydney College in Virginia, looked up one of
+              the more obscure Latin words, consectetur, from a Lorem Ipsum
+              passage, and going through the cites of the word in classical
+              literature, discovered the undoubtable source. Lorem Ipsum comes
+              from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et
+              Malorum" (The Extremes of Good and Evil) by Cicero, written in 45
+              BC. This book is a treatise on the theory of ethics, very popular
+              during the Renaissance. The first line of Lorem Ipsum, "Lorem
+              ipsum dolor sit amet..", comes from a line in section 1.10.32. The
+              standard chunk of Lorem Ipsum used since the 1500s is reproduced
+              below for those interested. Sections 1.10.32 and 1.10.33 from "de
+              Finibus Bonorum et Malorum" by Cicero are also reproduced in their
+              exact original form, accompanied by English versions from the 1914
+              translation by H. Rackham. Contrary to popular belief, Lorem Ipsum
+              is not simply random text. It has roots in a piece of classical
+              Latin literature from 45 BC, making it over 2000 years old.
+              Richard McClintock, a Latin professor at Hampden-Sydney College in
+              Virginia, looked up one of the more obscure Latin words,
+              consectetur, from a Lorem Ipsum passage, and going through the
+              cites of the word in classical literature, discovered the
+              undoubtable source. Lorem Ipsum comes from sections 1.10.32 and
+              1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good
+              and Evil) by Cicero, written in 45 BC. This book is a treatise on
+              the theory of ethics, very popular during the Renaissance. The
+              first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes
+              from a line in section 1.10.32. The standard chunk of Lorem Ipsum
+              used since the 1500s is reproduced below for those interested.
+              Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum"
+              by Cicero are also reproduced in their exact original form,
+              accompanied by English versions from the 1914 translation by H.
+              Rackham.
+            </Text>
+          </Pressable>
+        </Modal>
+
+        {/* <Image source={logImage}/> */}
+        <ImageBackground source={logImage} style={{ flex: 1 }}>
+          <Text>image text</Text>
+        </ImageBackground>
+      </View>
+    </ScrollView>
+
     // <ParallaxScrollView
     //   headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
     //   headerImage={
@@ -57,9 +139,16 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+  content: {
+     width:100,
+     height:100,
+     paddingHorizontal:10,
+     paddingVertical:20,
+     backgroundColor:"red"
+  },
   titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 8,
   },
   stepContainer: {
@@ -71,6 +160,15 @@ const styles = StyleSheet.create({
     width: 290,
     bottom: 0,
     left: 0,
-    position: 'absolute',
+    position: "absolute",
   },
+  boxShadow:{
+    shadowColor:"#333333",
+    shadowOffset:{
+      width:6,
+      height:6
+    },
+    shadowOpacity:.6,
+    shadowRadius:4
+  }
 });
