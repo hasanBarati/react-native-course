@@ -1,32 +1,15 @@
 import {
-  Image,
-  StyleSheet,
   Platform,
-  View,
-  Text,
-  ImageBackground,
-  ScrollView,
-  Button,
-  Pressable,
-  Modal,
   StatusBar,
-  ActivityIndicator,
-  Alert,
-  Dimensions,
-  useWindowDimensions,
-  SafeAreaView,
-  TextInput,
-  Switch,
+  StyleSheet,
+  useWindowDimensions
 } from "react-native";
 
-import { HelloWave } from "@/components/HelloWave";
-import ParallaxScrollView from "@/components/ParallaxScrollView";
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
-import { useEffect, useState } from "react";
-import Box from "@/components/Box";
-import PoekemanCard from "@/components/PokemanCard";
-import pokemanLists from "@/data.json"
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from '@react-navigation/stack';
+import { useState } from "react";
+import { Home } from "../home/page";
+
 
 const logImage = require("@/assets/images/adaptive-icon.png");
 export default function HomeScreen() {
@@ -53,16 +36,14 @@ export default function HomeScreen() {
     moves:["Scratch","Ember","Growl","Leer"],
     weaknesses:["water","Rock"]
   }
+  const Stack = createStackNavigator();
   return (
-    <SafeAreaView style={styles.container}>
-        <View style={styles.form}>
-          <Text style={styles.label} >username:</Text>
-          <TextInput style={styles.input}  placeholder="enter your username"/>
-          <Text style={styles.label} >passowrd</Text>
-          <TextInput secureTextEntry style={styles.input}/>
-          <Button title="login"  />
-        </View>
-    </SafeAreaView>
+  
+
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={Home} />
+    </Stack.Navigator>
+
   );
 }
 
