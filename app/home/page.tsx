@@ -1,11 +1,12 @@
 import React from 'react'
+import { Button } from 'react-native'
 
-export function Home() {
+export function Home({navigation}) {
     
 
     return (
         <>
-            Home
+            <Button title="Toggle " onPress={()=>navigation.toggleDrawer()} />
         </>
     )
 }
